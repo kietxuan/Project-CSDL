@@ -1,0 +1,8 @@
+# Core
+Flask
+python-dotenv
+mysql-connector-python
+
+# Báo cáo và Biểu đồ
+pandas
+matplotlib
