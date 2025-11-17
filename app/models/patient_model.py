@@ -22,7 +22,6 @@ def get_all_patients():
 def get_patient_by_id(patient_id):
     """
     Lấy thông tin chi tiết của 1 bệnh nhân cụ thể.
-    Dùng để hiển thị vào form 'Sửa' (Edit).
     """
     conn = get_db_connection()
     if conn:
@@ -77,8 +76,6 @@ def update_patient(patient_id, name, birthdate):
 def delete_patient(patient_id):
     """
     Xóa bệnh nhân.
-    Lưu ý: Nếu bệnh nhân đã có hồ sơ khám bệnh (TreatmentSessions), 
-    việc xóa có thể bị chặn hoặc xóa lan truyền tùy thuộc vào cấu hình FK trong schema.sql (ON DELETE CASCADE).
     """
     conn = get_db_connection()
     if conn:
@@ -97,7 +94,6 @@ def delete_patient(patient_id):
 def search_patients(keyword):
     """
     Tìm kiếm bệnh nhân theo tên (Global Search).
-    Yêu cầu đề bài [2.4 Search & Filter].
     """
     conn = get_db_connection()
     if conn:
@@ -114,3 +110,4 @@ def search_patients(keyword):
         except mysql.connector.Error as err:
             print(f"Error: {err}")
     return []
+
