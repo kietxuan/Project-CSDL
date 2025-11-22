@@ -1,0 +1,51 @@
+/* app/ui/static/css/style.css */
+
+/* 1. Tùy chỉnh Dashboard Cards */
+.card {
+    border: none;
+    border-radius: 12px; /* Bo tròn góc */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Nhảy lên nhẹ khi di chuột vào */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important; /* Đổ bóng đậm hơn */
+}
+
+/* 2. Tùy chỉnh Bảng (Table) */
+.table thead th {
+    background-color: #343a40; /* Màu nền tiêu đề bảng đậm hơn */
+    color: #fff;
+    border-top-left-radius: 10px; /* Bo tròn góc bảng */
+    border-top-right-radius: 10px;
+    border: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* Màu nền khi di chuột qua hàng */
+}
+
+/* 3. Tùy chỉnh Navbar */
+.navbar {
+    background: linear-gradient(45deg, #0d6efd, #0a58ca); /* Màu gradient xanh */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 4. Hiệu ứng Flash Message */
+.alert {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 5. Badge cho Điều trị (trong bảng Sessions) */
+.badge-treatment {
+    font-size: 0.9em;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
