@@ -1,4 +1,4 @@
-USE HospitalDB;
+USE hospital_patient_manager;
 
 INSERT INTO Patients (PatientName, Birthdate) VALUES
 ('Nguyen Van 1', '1990-01-01'),
@@ -173,3 +173,4 @@ INSERT INTO TreatmentSessions (PatientID, DoctorID, TreatmentID, TreatmentDate) 
 (33,9,7,'2024-03-16 15:00'),
 (16,5,2,'2024-03-17 16:00'),
 (6,1,6,'2024-03-18 09:00');
+
