@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Quản lý Bệnh nhân</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+        <i class="fas fa-plus"></i> Thêm mới
+    </button>
+</div>
+
+<form method="GET" action="/patients" class="row g-3 mb-4">
+    <div class="col-auto">
+        <input type="text" class="form-control" name="search" placeholder="Nhập tên bệnh nhân..." value="{{ search_keyword }}">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-secondary">Tìm kiếm</button>
+    </div>
+</form>
+
+<table class="table table-striped table-hover shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Họ và Tên</th>
+            <th>Ngày sinh</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in patients %}
+        <tr>
+            <td>{{ p.PatientID }}</td>
+            <td>{{ p.PatientName }}</td>
+            <td>{{ p.Birthdate }}</td>
+            <td>
+                <a href="/patients/edit/{{ p.PatientID }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="/patients/delete/{{ p.PatientID }}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?');"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/patients/add" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Bệnh nhân mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Họ tên</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Ngày sinh</label>
+                        <input type="date" name="birthdate" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
