@@ -1,1 +1,85 @@
+{% extends "layout.html" %}
 
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Quản lý Phiên Điều Trị</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSessionModal">
+        <i class="fas fa-plus"></i> Tạo Phiên Khám
+    </button>
+</div>
+
+<table class="table table-hover shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Ngày giờ</th>
+            <th>Bệnh nhân</th>
+            <th>Bác sĩ</th>
+            <th>Điều trị</th>
+            <th>Chi phí</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in sessions %}
+        <tr>
+            <td>{{ s.SessionID }}</td>
+            <td>{{ s.TreatmentDate }}</td>
+            <td>{{ s.PatientName }}</td>
+            <td>{{ s.DoctorName }}</td>
+            <td><span class="badge bg-info text-dark">{{ s.TreatmentName }}</span></td>
+            <td>{{ "{:,.0f}".format(s.StandardCost) }}</td>
+            <td>
+                <a href="/sessions/delete/{{ s.SessionID }}" class="btn btn-sm btn-danger" onclick="return confirm('Xóa phiên này?');">X</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="modal fade" id="addSessionModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/sessions/add" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo Phiên Điều Trị Mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Chọn Bệnh nhân</label>
+                        <select name="patient_id" class="form-select" required>
+                            {% for p in patients %}
+                                <option value="{{ p.PatientID }}">{{ p.PatientID }} - {{ p.PatientName }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Chọn Bác sĩ</label>
+                        <select name="doctor_id" class="form-select" required>
+                            {% for d in doctors %}
+                                <option value="{{ d.DoctorID }}">{{ d.DoctorName }} ({{ d.Specialty }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Chọn Liệu trình</label>
+                        <select name="treatment_id" class="form-select" required>
+                            {% for t in treatments %}
+                                <option value="{{ t.TreatmentID }}">{{ t.TreatmentName }} - {{ "{:,.0f}".format(t.StandardCost) }}đ</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Ngày giờ (Để trống = Hiện tại)</label>
+                        <input type="datetime-local" name="date" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Tạo Phiên</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
