@@ -12,3 +12,7 @@
 * **Backend:** Flask
 * **Frontend:** Jinja2, Bootstrap
 * **Database:** MySQL
+
+## 🎥 Video Demo
+Nhóm đã quay video demo chi tiết các chức năng của ứng dụng.
+👉 **[BẤM VÀO ĐÂY ĐỂ XEM VIDEO TRÊN YOUTUBE](https://www.youtube.com/watch?v=2yN17vzsmDU)**
